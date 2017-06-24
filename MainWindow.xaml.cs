@@ -24,8 +24,8 @@ namespace TouchInjector
 
         #region Backend Variables
         TuioChannel channel;
-        private int maxTouchPoints = 256;
-        private int frameCount;
+        private uint maxTouchPoints = 256;
+        private uint frameCount = 0;
         private const int checkScreenEvery = 100;
         Rectangle targetArea;
         #endregion
@@ -201,45 +201,55 @@ namespace TouchInjector
             //    ScanScreens();
             //loop through the TuioObjects
             List<PointerTouchInfo> toFire = new List<PointerTouchInfo>();
+            List<long> removeList = new List<long>();
             foreach (var kvp in channel.CursorList)
             {
                 TuioCursor cur = kvp.Value.TuioCursor;
                 IncomingType type = kvp.Value.Type;
                 int[] injectionCoordinates = ToInjectionCoordinates(cur.X, cur.Y);
-                int radius = 2;
+                int radius = 12;
                 //make a new pointertouchinfo with all neccessary information
                 PointerTouchInfo contact = new PointerTouchInfo();
                 contact.PointerInfo.pointerType = PointerInputType.TOUCH;
                 contact.TouchFlags = TouchFlags.NONE;
                 //contact.Orientation = (uint)cur.getAngleDegrees();//this is only valid for TuioObjects
-                contact.Pressure = 32000;
+                contact.Pressure = 1024;
                 contact.TouchMasks = TouchMask.CONTACTAREA | TouchMask.ORIENTATION | TouchMask.PRESSURE;
                 contact.PointerInfo.PtPixelLocation.X = injectionCoordinates[0];
                 contact.PointerInfo.PtPixelLocation.Y = injectionCoordinates[1];
-                contact.PointerInfo.PointerId = SessionIDToTouchID(cur.SessionID);
+                contact.PointerInfo.PointerId = (uint)cur.CursorID; // SessionIDToTouchID(cur.SessionID); //
+
                 contact.ContactArea.left = injectionCoordinates[0] - radius;
                 contact.ContactArea.right = injectionCoordinates[0] + radius;
                 contact.ContactArea.top = injectionCoordinates[1] - radius;
                 contact.ContactArea.bottom = injectionCoordinates[1] + radius;
-                //set the right flag
+                //contact.PointerInfo.FrameId = frameCount;
+
+                //set the right flags
                 if (type == IncomingType.New)
+                {
                     contact.PointerInfo.PointerFlags = PointerFlags.DOWN | PointerFlags.INRANGE | PointerFlags.INCONTACT;
+                    kvp.Value.Type = IncomingType.Update;
+                }
                 else if (type == IncomingType.Update)
                     contact.PointerInfo.PointerFlags = PointerFlags.UPDATE | PointerFlags.INRANGE | PointerFlags.INCONTACT;
                 else if (type == IncomingType.Remove)
+                {
                     contact.PointerInfo.PointerFlags = PointerFlags.UP;
+                    removeList.Add(kvp.Key);
+                }
+
                 //add it to 'toFire'
                 toFire.Add(contact);
             }
+
             //fire the events
             bool success = TCD.Sys.TouchInjection.TouchInjector.InjectTouchInput(toFire.Count, toFire.ToArray());
+
             //remove those with type == IncomingType.Remove
-            List<long> removeList = new List<long>();
-            foreach (var kvp in channel.CursorList)
-                if (kvp.Value.Type == IncomingType.Remove)
-                    removeList.Add(kvp.Key);
             foreach (long key in removeList)
                 channel.CursorList.Remove(key);//remove from the tuio channel
+
             //count up
             frameCount++;
         }
