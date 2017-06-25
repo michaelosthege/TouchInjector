@@ -13,9 +13,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" MinHeight="75" />
-            <RowDefinition Height="Auto" MinHeight="77" />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Header="TUIO" FontWeight="Bold">
             <Grid>
@@ -29,9 +29,10 @@
                 <controls:NumberOnlyTextBox Grid.Row="1" x:Name="portBox" HorizontalAlignment="Right" Width="50" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" />
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="1" Header="Touch Injection" FontWeight="Bold" Margin="0,0,0,51" Grid.RowSpan="2">
+        <GroupBox Grid.Row="1" Header="Touch Injection" FontWeight="Bold">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -39,21 +40,21 @@
                 <Label Grid.Row="0" FontWeight="Normal" x:Name="touchInjectionStatus" HorizontalAlignment="Right" />
                 <Label Grid.Row="1" FontWeight="Normal" Content="Targeted screen" HorizontalAlignment="Left" Margin="0" />
                 <ComboBox x:Name="screenSelector" Grid.Row="1" Margin="0" HorizontalAlignment="Right" FontWeight="Normal" Width="Auto" MinWidth="100" HorizontalContentAlignment="Right" SelectionChanged="screenSelector_SelectionChanged"/>
-                <CheckBox x:Name="feedbackCheckBox" FontWeight="Normal" Content="show Feedback" IsChecked="True" ToolTip="enable/disable touch feedback" Margin="10,32,-2,-37" Grid.Row="1" Checked="feedbackCheckBox_Changed" Unchecked="feedbackCheckBox_Changed"/>
+                <CheckBox x:Name="feedbackCheckBox" Margin="5" Grid.Row="2" FontWeight="Normal" Content="show Feedback" IsChecked="True" ToolTip="enable/disable touch feedback" Checked="feedbackCheckBox_Changed" Unchecked="feedbackCheckBox_Changed"/>
             </Grid>
 
         </GroupBox>
-        <GroupBox Grid.Row="2" Header="Application" FontWeight="Bold" Margin="0,31,0,0">
+        <GroupBox Grid.Row="2" Header="Application" FontWeight="Bold">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <CheckBox x:Name="autostartCheckBox" FontWeight="Normal" Content="Start with Windows" IsChecked="False" ToolTip="The app will be started by a scheduled task - you can configure it using the administrative tools." Margin="2,4,6,4"/>
+                <CheckBox x:Name="autostartCheckBox" Margin="5" FontWeight="Normal" Content="Start with Windows" IsChecked="False" ToolTip="The app will be started by a scheduled task - you can configure it using the administrative tools." />
             </Grid>
 
         </GroupBox>
-        <Button x:Name="startStopButton" Grid.Row="3" Content="stop" Margin="95,0,95,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Click="StartStop_Click" Height="20"/>
+        <Button x:Name="startStopButton" Grid.Row="3" Content="stop" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Click="StartStop_Click" />
     </Grid>
 
 </Window>
