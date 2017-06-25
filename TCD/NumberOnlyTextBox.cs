@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace TCD.Controls
 {
@@ -7,7 +8,7 @@ namespace TCD.Controls
     /// </summary>
     public class NumberOnlyTextBox : TextBox
     {
-        protected override void OnPreviewTextInput(System.Windows.Input.TextCompositionEventArgs e)
+        protected override void OnPreviewTextInput(TextCompositionEventArgs e)
         {
             e.Handled = !AreAllValidNumericChars(e.Text);
             base.OnPreviewTextInput(e);

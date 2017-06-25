@@ -6,8 +6,8 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
-using TCD.Sys.ApplicationExtensions;
-using TCD.Sys.TouchInjection;
+using TCD.System.ApplicationExtensions;
+using TCD.System.TouchInjection;
 using TCD.Sys.TUIO;
 using System.Drawing;
 using TUIO;
@@ -19,7 +19,7 @@ namespace TouchInjector
         //TODO: in the app.manifest (in the Properties folder), the uiaccess-variable is set to true. In theory this should be the basis to the ability to send touch events 
         //to applications running under the secure desktop (such as the Universal Access Control aka. UAC). According to an MSDN article, UIAccess-applications need to be certified
         //however, I was unable to get it working using a self-signed (and self-trusted) certificate.
-        //If anyone succeeds in enabling UIAccess, please contact me via https://touchinjector.codeplex.com, or thecakedev@hotmail.com
+        //If anyone succeeds in enabling UIAccess, please contact Martin Kaltenbrunner via https://github.com/mkalten/TouchInjector, or Michael Osthege via thecakedev@hotmail.com
 
 
         #region Backend Variables
@@ -115,7 +115,7 @@ namespace TouchInjector
         private async Task<bool> InitTouch()
         {
             await Task.Delay(0);
-            return TCD.Sys.TouchInjection.TouchInjector.InitializeTouchInjection((uint)maxTouchPoints, TouchFeedback.DEFAULT);
+            return TCD.System.TouchInjection.TouchInjector.InitializeTouchInjection((uint)maxTouchPoints, TouchFeedback.DEFAULT);
         }
         #endregion
      
@@ -244,7 +244,7 @@ namespace TouchInjector
             }
 
             //fire the events
-            bool success = TCD.Sys.TouchInjection.TouchInjector.InjectTouchInput(toFire.Count, toFire.ToArray());
+            bool success = TCD.System.TouchInjection.TouchInjector.InjectTouchInput(toFire.Count, toFire.ToArray());
 
             //remove those with type == IncomingType.Remove
             foreach (long key in removeList)

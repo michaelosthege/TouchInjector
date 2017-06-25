@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace TCD.Sys.ApplicationExtensions
+namespace TCD.System.ApplicationExtensions
 {
     public class MonitorInfo
     {

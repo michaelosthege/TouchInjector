@@ -80,9 +80,14 @@
     <StartupObject>TouchInjector.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>packages\TaskScheduler.2.5.23\lib\net40\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="libTUIO, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\libTUIO11.1.1.5\lib\libTUIO.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Win32.TaskScheduler, Version=1.8.3.15820, Culture=neutral, PublicKeyToken=0d013ddd5178a2ae, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\TCD\External\Microsoft.Win32.TaskScheduler.dll</HintPath>
+      <HintPath>packages\TCD.System.ApplicationExtensions.1.1.0\lib\net45\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -96,6 +101,12 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="TCD.System.ApplicationExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\TCD.System.ApplicationExtensions.1.1.0\lib\net45\TCD.System.ApplicationExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="TCD.System.TouchInjection, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\TCD.System.TouchInjection.1.0.0\lib\net45\TCD.System.TouchInjection.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -105,28 +116,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="TCD\ApplicationAutostart.cs" />
     <Compile Include="TCD\MonitorInfo.cs" />
     <Compile Include="TCD\NumberOnlyTextBox.cs" />
-    <Compile Include="TCD\TouchInjection.cs" />
     <Compile Include="TCD\TUIO\IncomingType.cs" />
-    <Compile Include="TCD\TUIO\OSC.NET\OSCBundle.cs" />
-    <Compile Include="TCD\TUIO\OSC.NET\OSCMessage.cs" />
-    <Compile Include="TCD\TUIO\OSC.NET\OSCPacket.cs" />
-    <Compile Include="TCD\TUIO\OSC.NET\OSCReceiver.cs" />
-    <Compile Include="TCD\TUIO\OSC.NET\OSCTimeTag.cs" />
-    <Compile Include="TCD\TUIO\OSC.NET\OSCTransmitter.cs" />
     <Compile Include="TCD\TUIO\TuioChannel.cs" />
     <Compile Include="TCD\TUIO\TuioChannelHelper.cs" />
     <Compile Include="TCD\TUIO\TuioCursorContainer.cs" />
-    <Compile Include="TCD\TUIO\TUIO\TuioBlob.cs" />
-    <Compile Include="TCD\TUIO\TUIO\TuioClient.cs" />
-    <Compile Include="TCD\TUIO\TUIO\TuioContainer.cs" />
-    <Compile Include="TCD\TUIO\TUIO\TuioCursor.cs" />
-    <Compile Include="TCD\TUIO\TUIO\TuioListener.cs" />
-    <Compile Include="TCD\TUIO\TUIO\TuioObject.cs" />
-    <Compile Include="TCD\TUIO\TUIO\TuioPoint.cs" />
-    <Compile Include="TCD\TUIO\TUIO\TuioTime.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -158,6 +153,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest">
       <SubType>Designer</SubType>
     </None>
