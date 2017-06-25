@@ -5,5 +5,8 @@
     <Setting Name="ListeningPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3333</Value>
     </Setting>
+    <Setting Name="TouchFeedback" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

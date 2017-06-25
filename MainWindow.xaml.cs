@@ -47,6 +47,7 @@ namespace TouchInjector
         public async void Initialize()
         {
             ScanScreens();
+            feedbackCheckBox.IsChecked = Properties.Settings.Default.TouchFeedback;
             portBox.Text = Properties.Settings.Default.ListeningPort.ToString();
             bool touch = await InitTouch();
             bool tuio = await Connect();
@@ -115,7 +116,9 @@ namespace TouchInjector
         private async Task<bool> InitTouch()
         {
             await Task.Delay(0);
-            return TCD.System.TouchInjection.TouchInjector.InitializeTouchInjection((uint)maxTouchPoints, TouchFeedback.DEFAULT);
+            feedbackCheckBox.IsEnabled = false;//lock the feedback box
+            Boolean showFeedback = Convert.ToBoolean(feedbackCheckBox.IsChecked);
+            return TCD.System.TouchInjection.TouchInjector.InitializeTouchInjection((uint)maxTouchPoints, showFeedback ? TouchFeedback.INDIRECT : TouchFeedback.NONE);
         }
         #endregion
      
@@ -126,6 +129,7 @@ namespace TouchInjector
             tuioStatus.Content = (channel.IsRunning) ? Properties.Resources.TouchReady : (status == TouchInjectorStatus.Deactivated) ? Properties.Resources.TuioDeactivated : (status == TouchInjectorStatus.Initializing) ? Properties.Resources.TuioInitializing : Properties.Resources.TuioError;
             startStopButton.IsEnabled = (status != TouchInjectorStatus.Initializing);
             portBox.IsEnabled = !channel.IsRunning;
+            feedbackCheckBox.IsEnabled = !channel.IsRunning;
             trayIcon.Text = "TouchInjector - " + status;
             switch (status)
             {
@@ -158,7 +162,10 @@ namespace TouchInjector
             if (channel.IsRunning)
                 channel.Disconnect();
             else
+            {
+                error = !await InitTouch();
                 error = !await Connect();
+            }
             SetStatus((channel.IsRunning) ? TouchInjectorStatus.Ready : (error) ? TouchInjectorStatus.Error : TouchInjectorStatus.Deactivated);
         }
         //Autostart
@@ -265,6 +272,13 @@ namespace TouchInjector
             return result;
         }
         #endregion
+
+        private void feedbackCheckBox_Changed(object sender, RoutedEventArgs e)
+        {
+            Boolean showFeedback = Convert.ToBoolean(feedbackCheckBox.IsChecked);
+            Properties.Settings.Default.TouchFeedback = showFeedback;
+            Properties.Settings.Default.Save();
+        }
     }
     enum TouchInjectorStatus
     {

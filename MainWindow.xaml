@@ -13,9 +13,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" MinHeight="75" />
+            <RowDefinition Height="Auto" MinHeight="77" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Header="TUIO" FontWeight="Bold">
             <Grid>
@@ -29,7 +29,7 @@
                 <controls:NumberOnlyTextBox Grid.Row="1" x:Name="portBox" HorizontalAlignment="Right" Width="50" FontWeight="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" />
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="1" Header="Touch Injection" FontWeight="Bold">
+        <GroupBox Grid.Row="1" Header="Touch Injection" FontWeight="Bold" Margin="0,0,0,51" Grid.RowSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -39,10 +39,11 @@
                 <Label Grid.Row="0" FontWeight="Normal" x:Name="touchInjectionStatus" HorizontalAlignment="Right" />
                 <Label Grid.Row="1" FontWeight="Normal" Content="Targeted screen" HorizontalAlignment="Left" Margin="0" />
                 <ComboBox x:Name="screenSelector" Grid.Row="1" Margin="0" HorizontalAlignment="Right" FontWeight="Normal" Width="Auto" MinWidth="100" HorizontalContentAlignment="Right" SelectionChanged="screenSelector_SelectionChanged"/>
+                <CheckBox x:Name="feedbackCheckBox" FontWeight="Normal" Content="show Feedback" IsChecked="True" ToolTip="enable/disable touch feedback" Margin="10,32,-2,-37" Grid.Row="1" Checked="feedbackCheckBox_Changed" Unchecked="feedbackCheckBox_Changed"/>
             </Grid>
 
         </GroupBox>
-        <GroupBox Grid.Row="2" Header="Application" FontWeight="Bold">
+        <GroupBox Grid.Row="2" Header="Application" FontWeight="Bold" Margin="0,31,0,0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -52,7 +53,7 @@
             </Grid>
 
         </GroupBox>
-        <Button x:Name="startStopButton" Grid.Row="3" Content="deactivate" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="75" Click="StartStop_Click"/>
+        <Button x:Name="startStopButton" Grid.Row="3" Content="stop" Margin="95,0,95,10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="50" Click="StartStop_Click" Height="20"/>
     </Grid>
 
 </Window>
