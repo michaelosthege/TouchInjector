@@ -6,7 +6,7 @@
       <Value Profile="(Default)">3333</Value>
     </Setting>
     <Setting Name="TouchFeedback" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

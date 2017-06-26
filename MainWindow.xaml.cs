@@ -19,8 +19,7 @@ namespace TouchInjector
         //TODO: in the app.manifest (in the Properties folder), the uiaccess-variable is set to true. In theory this should be the basis to the ability to send touch events 
         //to applications running under the secure desktop (such as the Universal Access Control aka. UAC). According to an MSDN article, UIAccess-applications need to be certified
         //however, I was unable to get it working using a self-signed (and self-trusted) certificate.
-        //If anyone succeeds in enabling UIAccess, please contact Martin Kaltenbrunner via https://github.com/mkalten/TouchInjector, or Michael Osthege via thecakedev@hotmail.com
-
+        //If anyone succeeds in enabling UIAccess, please contact Michael Osthege via thecakedev@hotmail.com
 
         #region Backend Variables
         TuioChannel channel;

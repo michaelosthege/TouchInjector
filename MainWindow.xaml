@@ -40,7 +40,7 @@
                 <Label Grid.Row="0" FontWeight="Normal" x:Name="touchInjectionStatus" HorizontalAlignment="Right" />
                 <Label Grid.Row="1" FontWeight="Normal" Content="Targeted screen" HorizontalAlignment="Left" Margin="0" />
                 <ComboBox x:Name="screenSelector" Grid.Row="1" Margin="0" HorizontalAlignment="Right" FontWeight="Normal" Width="Auto" MinWidth="100" HorizontalContentAlignment="Right" SelectionChanged="screenSelector_SelectionChanged"/>
-                <CheckBox x:Name="feedbackCheckBox" Margin="5" Grid.Row="2" FontWeight="Normal" Content="show Feedback" IsChecked="True" ToolTip="enable/disable touch feedback" Checked="feedbackCheckBox_Changed" Unchecked="feedbackCheckBox_Changed"/>
+                <CheckBox x:Name="feedbackCheckBox" Margin="5" Grid.Row="2" FontWeight="Normal" Content="show Feedback" IsChecked="False" ToolTip="enable/disable touch feedback" Checked="feedbackCheckBox_Changed" Unchecked="feedbackCheckBox_Changed"/>
             </Grid>
 
         </GroupBox>
