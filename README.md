@@ -6,8 +6,11 @@ v1.3 [here](https://github.com/michaelosthege/TouchInjector/releases/download/1.
 
 ![TouchInjector](TouchInjector.png)
 
-update from the original code by Michael Osthege  
+update from the original code repository on CodePlex  
 https://touchinjector.codeplex.com/
 
 ## see also:
 [TouchProxy](https://github.com/frog/touchproxy), an alternative TUIO touch injector for Windows
+
+[TuioPad](https://github.com/mkalten/TuioPad), a TUIO remote tracker for iOS 
+[TuioDroid](https://github.com/TobiasSchwirten/tuiodroid), a TUIO remote tracker for Android 
