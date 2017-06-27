@@ -112,7 +112,6 @@
     </ApplicationDefinition>
     <Compile Include="TCD\MonitorInfo.cs" />
     <Compile Include="TCD\NumberOnlyTextBox.cs" />
-    <Compile Include="TCD\TUIO\IncomingType.cs" />
     <Compile Include="TCD\TUIO\TuioChannel.cs" />
     <Compile Include="TCD\TUIO\TuioChannelHelper.cs" />
     <Compile Include="TCD\TUIO\TuioCursorContainer.cs" />

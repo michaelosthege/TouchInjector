@@ -223,7 +223,7 @@ namespace TouchInjector
                 contact.TouchMasks = TouchMask.CONTACTAREA | TouchMask.ORIENTATION | TouchMask.PRESSURE;
                 contact.PointerInfo.PtPixelLocation.X = injectionCoordinates[0];
                 contact.PointerInfo.PtPixelLocation.Y = injectionCoordinates[1];
-                contact.PointerInfo.PointerId = (uint)cur.CursorID; // SessionIDToTouchID(cur.SessionID); //
+                contact.PointerInfo.PointerId = (uint)cur.CursorID;
 
                 contact.ContactArea.left = injectionCoordinates[0] - radius;
                 contact.ContactArea.right = injectionCoordinates[0] + radius;
@@ -259,10 +259,7 @@ namespace TouchInjector
             //count up
             frameCount++;
         }
-        private uint SessionIDToTouchID(long sessionID)
-        {
-            return (uint)(sessionID % maxTouchPoints);
-        }
+
         private int[] ToInjectionCoordinates(float x, float y)
         {
             int[] result = new int[2];            
